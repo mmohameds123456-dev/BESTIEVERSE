@@ -1,0 +1,915 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eaf6fd">
+<title>BESTIEVERSE | Meme</title>
+
+<style>
+:root {
+  --blue: #b9ddf5;
+  --pale: #eaf6fd;
+  --cream: #fff9ec;
+  --dark: #365c78;
+  --muted: #718da3;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+body {
+  background: var(--pale);
+  color: var(--dark);
+  font-family: Georgia, serif;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+.hero {
+  min-height: 100svh;
+  min-height: 100vh;
+  padding: 35px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(145deg, #b9ddf5, #fff9ec);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.clouds {
+  font-size: clamp(30px, 7vw, 48px);
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 10vw, 82px);
+  letter-spacing: clamp(2px, 1vw, 7px);
+  margin: 24px 0 12px;
+  overflow-wrap: anywhere;
+}
+
+.hero p {
+  color: #66859e;
+  font-size: clamp(16px, 4vw, 20px);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: 0;
+  border-radius: 40px;
+  padding: 14px 25px;
+  margin-top: 25px;
+  font-size: 16px;
+  min-height: 48px;
+  transition: transform .2s, background .2s;
+}
+
+.primary-btn {
+  background: #426b89;
+  color: white;
+}
+
+.secondary-btn {
+  background: #d8ebf8;
+  color: var(--dark);
+}
+
+.primary-btn:active,
+.secondary-btn:active {
+  transform: scale(.97);
+}
+
+.section {
+  padding: 75px 20px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(27px, 6vw, 42px);
+  margin-bottom: 14px;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  font-size: 16px;
+}
+
+.music-panel {
+  background: var(--cream);
+  border-radius: 22px;
+  padding: 25px 18px;
+  max-width: 520px;
+  width: 100%;
+  margin: 28px auto 0;
+  box-shadow: 0 10px 30px #42678312;
+}
+
+.music-panel p {
+  margin: 10px 0 17px;
+  color: var(--muted);
+}
+
+audio {
+  display: block;
+  width: 100%;
+  max-width: 390px;
+  margin: auto;
+}
+
+/* Letter */
+
+.letter-section {
+  background: linear-gradient(180deg, #eaf6fd, #d9edfa);
+}
+
+.envelope {
+  max-width: 520px;
+  width: 100%;
+  margin: 28px auto;
+  background: var(--cream);
+  padding: 32px 20px;
+  border-radius: 22px;
+  box-shadow: 0 12px 35px #42678318;
+}
+
+.envelope-icon {
+  font-size: 58px;
+  margin-bottom: 14px;
+}
+
+.letter {
+  display: none;
+  max-width: 760px;
+  width: 100%;
+  margin: 25px auto 0;
+  background: var(--cream);
+  padding: clamp(22px, 5vw, 40px);
+  border-radius: 20px;
+  text-align: left;
+  line-height: 1.9;
+  font-size: 16px;
+  box-shadow: 0 10px 30px #42678315;
+  overflow-wrap: anywhere;
+}
+
+.letter.show {
+  display: block;
+  animation: appear .5s ease;
+}
+
+.letter h3 {
+  text-align: center;
+  margin-bottom: 22px;
+  font-size: 25px;
+}
+
+/* Gallery */
+
+.gallery-section {
+  background: #fffaf0;
+}
+
+.photo-feature {
+  max-width: 900px;
+  width: 100%;
+  margin: 35px auto;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 20px;
+  align-items: center;
+  text-align: left;
+}
+
+.main-photo {
+  overflow: hidden;
+  border-radius: 24px;
+  height: 430px;
+  background: #dceefa;
+  box-shadow: 0 12px 30px #42678320;
+}
+
+.main-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-note {
+  background: #e5f3fc;
+  padding: 25px;
+  border-radius: 20px;
+  line-height: 1.8;
+}
+
+.photo-note h3 {
+  font-size: 25px;
+  margin-bottom: 12px;
+}
+
+.small-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: 25px auto;
+}
+
+.gallery-card {
+  background: white;
+  padding: 9px 9px 15px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px #42678312;
+  overflow: hidden;
+}
+
+.gallery-card img {
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.gallery-card p {
+  margin-top: 12px;
+  font-size: 15px;
+}
+
+/* Game */
+
+.game-section {
+  background: linear-gradient(180deg, #d9edfa, #eef8fd);
+}
+
+.game-box {
+  max-width: 850px;
+  width: 100%;
+  margin: 30px auto;
+  background: var(--cream);
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px #42678318;
+}
+
+.game-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.game-stage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  background: linear-gradient(#cce9fa, #f5fbff);
+  touch-action: manipulation;
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 800 / 260;
+}
+
+.game-message {
+  margin-top: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.game-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.game-buttons button {
+  margin-top: 15px;
+}
+
+footer {
+  padding: 35px 15px;
+  background: #b9ddf5;
+  text-align: center;
+  line-height: 1.8;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 650px) {
+  .section {
+    padding: 55px 16px;
+  }
+
+  .photo-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .main-photo {
+    height: min(105vw, 420px);
+  }
+
+  .small-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .gallery-card img {
+    height: 180px;
+  }
+
+  .game-box {
+    padding: 12px;
+  }
+
+  .letter {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 370px) {
+  .small-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-card img {
+    height: 250px;
+  }
+
+  .game-stats {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="clouds">☁️ ✨ ☁️</div>
+    <h1>BESTIEVERSE</h1>
+    <p>A Little Universe Made for Meme 💙</p>
+    <button class="primary-btn" onclick="enterWorld()">
+      Enter Our World ✨
+    </button>
+  </div>
+</header>
+
+<!-- WELCOME AND MUSIC -->
+
+<section class="section" id="welcome">
+  <h2 class="section-title">Welcome, Meme ☁️</h2>
+  <p class="section-subtitle">
+    Some people make life brighter just by being in it.
+    This little universe is made especially for you.
+    I'm really glad you're part of my world! 💙
+  </p>
+
+  <div class="music-panel">
+    <h2>Our Song 🎵</h2>
+    <p>A little soundtrack for our friendship.</p>
+
+    <audio id="music" controls loop preload="metadata">
+      <source src="friendship.aac" type="audio/aac">
+      <source src="friendship.mp3" type="audio/mpeg">
+      Your browser does not support this audio.
+    </audio>
+  </div>
+</section>
+
+<!-- LETTER -->
+
+<section class="section letter-section">
+  <h2 class="section-title">A Letter For You 💌</h2>
+  <p class="section-subtitle">
+    There's something I've always wanted you to know.
+  </p>
+
+  <div class="envelope">
+    <div class="envelope-icon">💌</div>
+    <h3>A little letter for Meme</h3>
+    <p style="margin-top:10px;color:#718da3">
+      Open this whenever you're ready.
+    </p>
+    <button class="primary-btn" id="letterButton" onclick="openLetter()">
+      Open My Letter
+    </button>
+  </div>
+
+  <article class="letter" id="letter">
+    <h3>To My Meme, My Favorite Person 💙</h3>
+
+    I honestly don't know where to begin, because no words could ever fully explain how much you mean to me.
+
+    <br><br>
+
+    You've been there for me during some of the darkest moments of my life. Losing my mom and dad was something I never thought I'd have to go through, and during those moments when everything felt impossible, you were there for me. You were the one who stood by my side, supported me, listened to me, and made me feel like I wasn't completely alone.
+
+    <br><br>
+
+    You might never realize how much your presence meant to me, but I swear I'll never forget it. Every little thing you did, every conversation, every time you checked on me, meant more than you could ever imagine.
+
+    <br><br>
+
+    I know we're not perfect. We've had our arguments, misunderstandings, and difficult moments. Sometimes things between us get complicated, but none of that changes how much I appreciate you or how important you are to me.
+
+    <br><br>
+
+    No matter how many times we disagree, I never want a temporary problem to erase something as special as our friendship.
+
+    <br><br>
+
+    I genuinely can't imagine my life without you being a part of it. You're not just a friend to me; you're someone who became a part of my life in a way I'll always be grateful for.
+
+    <br><br>
+
+    Thank you for being my support when I needed it most. Thank you for staying, for caring, and for being YOU.
+
+    <br><br>
+
+    I hope we never become strangers, and I hope we always find our way back to each other, no matter what happens.
+
+    <br><br>
+
+    <strong>You will always have a special place in my heart, Meme.</strong>
+
+    <br><br>
+
+    With all my love and appreciation,<br>
+    <strong>Your Best Friend. ☁️💙</strong>
+  </article>
+</section>
+
+<!-- PHOTOS -->
+
+<section class="section gallery-section">
+  <h2 class="section-title">Our Little Universe 📸</h2>
+  <p class="section-subtitle">
+    A few pictures of someone who makes life a little brighter.
+  </p>
+
+  <div class="photo-feature">
+    <div class="main-photo">
+      <img src="mariem-now.jpg" alt="Meme today" loading="lazy">
+    </div>
+
+    <div class="photo-note">
+      <h3>Meme, Today ✨</h3>
+      <p>
+        A special person deserves a special place
+        in this little universe.
+      </p>
+    </div>
+  </div>
+
+  <div class="small-gallery">
+    <div class="gallery-card">
+      <img src="mariem-child.jpg" alt="Little Meme" loading="lazy">
+      <p>Little Meme 🌷</p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="us-1.jpg" alt="Us together" loading="lazy">
+      <p>Us Together ☁️</p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="us-2.jpg" alt="Our friendship" loading="lazy">
+      <p>Another Moment 💙</p>
+    </div>
+  </div>
+</section>
+
+<!-- GAME -->
+
+<section class="section game-section">
+  <h2 class="section-title">MEME RUN 🦖</h2>
+  <p class="section-subtitle">
+    Ready for a little challenge?
+    Jump over the obstacles and beat your own high score!
+  </p>
+
+  <div class="game-box">
+    <div class="game-stats">
+      <span>⭐ Score: <span id="score">0</span></span>
+      <span>🏆 Best: <span id="best">0</span></span>
+    </div>
+
+    <div class="game-stage" id="gameStage">
+      <canvas id="gameCanvas" width="800" height="260"></canvas>
+    </div>
+
+    <p class="game-message" id="gameMessage">
+      Press Start, then tap the screen or press SPACE to jump.
+    </p>
+
+    <div class="game-buttons">
+      <button class="primary-btn" id="startButton" onclick="startGame()">
+        Start Game 🦖
+      </button>
+      <button class="secondary-btn" onclick="restartGame()">
+        Play Again ↻
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with friendship for Meme ☁️💙
+  <br>
+  BESTIEVERSE © 2026
+</footer>
+
+<script>
+/* INTRO */
+
+function enterWorld() {
+  document.getElementById("welcome").scrollIntoView({
+    behavior: "smooth"
+  });
+
+  const music = document.getElementById("music");
+  music.play().catch(() => {
+    // The visible music controls can be used if autoplay is blocked.
+  });
+}
+
+/* LETTER */
+
+function openLetter() {
+  const letter = document.getElementById("letter");
+  const button = document.getElementById("letterButton");
+
+  letter.classList.toggle("show");
+
+  button.textContent = letter.classList.contains("show")
+    ? "Close Letter"
+    : "Open My Letter";
+
+  if (letter.classList.contains("show")) {
+    setTimeout(() => {
+      letter.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }, 100);
+  }
+}
+
+/* MEME RUN GAME */
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const scoreElement = document.getElementById("score");
+const bestElement = document.getElementById("best");
+const messageElement = document.getElementById("gameMessage");
+const startButton = document.getElementById("startButton");
+
+let running = false;
+let gameOver = false;
+let score = 0;
+let best = 0;
+let speed = 5;
+let lastTime = 0;
+let spawnTimer = 0;
+let animationId = null;
+
+const ground = 215;
+
+const player = {
+  x: 85,
+  y: ground - 43,
+  w: 43,
+  h: 43,
+  vy: 0,
+  jumping: false
+};
+
+let obstacles = [];
+let clouds = [
+  { x: 120, y: 40, s: 1 },
+  { x: 390, y: 65, s: 0.8 },
+  { x: 650, y: 35, s: 1.1 }
+];
+
+bestElement.textContent = best;
+
+function drawCloud(x, y, scale) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+  ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  ctx.arc(0, 10, 17, 0, Math.PI * 2);
+  ctx.arc(19, 0, 22, 0, Math.PI * 2);
+  ctx.arc(41, 11, 16, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawDino() {
+  const x = player.x;
+  const y = player.y;
+
+  ctx.fillStyle = "#426b89";
+
+  // Body
+  ctx.beginPath();
+  ctx.roundRect(x, y + 12, 35, 29, 9);
+  ctx.fill();
+
+  // Head
+  ctx.beginPath();
+  ctx.roundRect(x + 19, y, 27, 25, 8);
+  ctx.fill();
+
+  // Tail
+  ctx.beginPath();
+  ctx.moveTo(x + 3, y + 23);
+  ctx.lineTo(x - 9, y + 32);
+  ctx.lineTo(x + 5, y + 34);
+  ctx.fill();
+
+  // Eye
+  ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  ctx.arc(x + 37, y + 9, 3, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Feet
+  ctx.fillStyle = "#365c78";
+  ctx.fillRect(x + 7, y + 36, 8, 7);
+  ctx.fillRect(x + 25, y + 36, 8, 7);
+}
+
+function drawObstacle(ob) {
+  ctx.fillStyle = "#8aaec5";
+
+  ctx.beginPath();
+  ctx.roundRect(ob.x, ground - ob.h, ob.w, ob.h, 5);
+  ctx.fill();
+
+  ctx.fillStyle = "#668ca7";
+  ctx.fillRect(ob.x + 5, ground - ob.h + 8, 5, 8);
+}
+
+function drawScene() {
+  ctx.clearRect(0, 0, 800, 260);
+
+  ctx.fillStyle = "#e6f4fc";
+  ctx.fillRect(0, 0, 800, 260);
+
+  clouds.forEach(c => drawCloud(c.x, c.y, c.s));
+
+  ctx.strokeStyle = "#8eb7d1";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(0, ground);
+  ctx.lineTo(800, ground);
+  ctx.stroke();
+
+  ctx.fillStyle = "#a9d7f2";
+  for (let i = 0; i < 800; i += 40) {
+    ctx.fillRect(i, ground + 10, 15, 3);
+  }
+
+  obstacles.forEach(drawObstacle);
+  drawDino();
+
+  if (!running && !gameOver) {
+    ctx.fillStyle = "#365c78";
+    ctx.font = "bold 23px Georgia";
+    ctx.textAlign = "center";
+    ctx.fillText("Ready, Meme?", 400, 135);
+  }
+
+  if (gameOver) {
+    ctx.fillStyle = "#365c78";
+    ctx.font = "bold 27px Georgia";
+    ctx.textAlign = "center";
+    ctx.fillText("Game Over!", 400, 125);
+  }
+}
+
+function jump() {
+  if (!running || gameOver) return;
+
+  if (!player.jumping) {
+    player.vy = -13;
+    player.jumping = true;
+  }
+}
+
+function startGame() {
+  if (running) return;
+
+  if (gameOver) {
+    resetGame();
+  }
+
+  running = true;
+  gameOver = false;
+  lastTime = 0;
+
+  messageElement.textContent =
+    "Jump over the obstacles! You're doing great!";
+
+  startButton.textContent = "Playing...";
+
+  cancelAnimationFrame(animationId);
+  animationId = requestAnimationFrame(gameLoop);
+}
+
+function resetGame() {
+  running = false;
+  gameOver = false;
+  score = 0;
+  speed = 5;
+  spawnTimer = 0;
+  obstacles = [];
+
+  player.y = ground - player.h;
+  player.vy = 0;
+  player.jumping = false;
+
+  scoreElement.textContent = "0";
+  startButton.textContent = "Start Game 🦖";
+
+  drawScene();
+}
+
+function restartGame() {
+  resetGame();
+  startGame();
+}
+
+function endGame() {
+  running = false;
+  gameOver = true;
+
+  best = Math.max(best, score);
+  bestElement.textContent = best;
+
+  messageElement.textContent =
+    "Nice try, Meme! Press Play Again to try once more.";
+
+  startButton.textContent = "Play Again 🦖";
+
+  drawScene();
+}
+
+function gameLoop(time) {
+  if (!running) return;
+
+  const delta = lastTime ? Math.min((time - lastTime) / 16.67, 2) : 1;
+  lastTime = time;
+
+  score += 0.12 * delta;
+  speed = Math.min(5 + score / 120, 11);
+
+  scoreElement.textContent = Math.floor(score);
+
+  // Gravity and jumping
+  player.vy += 0.65 * delta;
+  player.y += player.vy * delta;
+
+  if (player.y >= ground - player.h) {
+    player.y = ground - player.h;
+    player.vy = 0;
+    player.jumping = false;
+  }
+
+  // Clouds move slowly
+  clouds.forEach(c => {
+    c.x -= 0.35 * delta;
+    if (c.x < -80) c.x = 850;
+  });
+
+  // Create obstacles
+  spawnTimer += delta;
+
+  if (spawnTimer > Math.max(55, 105 - speed * 4)) {
+    const height = 30 + Math.random() * 20;
+
+    obstacles.push({
+      x: 820,
+      w: 20 + Math.random() * 12,
+      h: height
+    });
+
+    spawnTimer = 0;
+  }
+
+  // Move obstacles
+  obstacles.forEach(ob => {
+    ob.x -= speed * delta;
+  });
+
+  obstacles = obstacles.filter(ob => ob.x > -50);
+
+  // Collision detection
+  for (const ob of obstacles) {
+    const playerLeft = player.x + 5;
+    const playerRight = player.x + player.w - 5;
+    const playerTop = player.y + 5;
+    const playerBottom = player.y + player.h;
+
+    const hit = (
+      playerRight > ob.x &&
+      playerLeft < ob.x + ob.w &&
+      playerBottom > ground - ob.h &&
+      playerTop < ground
+    );
+
+    if (hit) {
+      endGame();
+      return;
+    }
+  }
+
+  drawScene();
+  animationId = requestAnimationFrame(gameLoop);
+}
+
+// Keyboard controls
+document.addEventListener("keydown", event => {
+  if (event.code === "Space" || event.code === "ArrowUp") {
+    if (document.activeElement === document.body) {
+      event.preventDefault();
+      jump();
+    }
+  }
+});
+
+// Touch and click controls
+canvas.addEventListener("pointerdown", event => {
+  event.preventDefault();
+  jump();
+});
+
+drawScene();
+</script>
+
+</body>
+</html>
